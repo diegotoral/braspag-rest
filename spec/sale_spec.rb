@@ -85,6 +85,11 @@ describe BraspagRest::Sale do
             expiration_date: '12/2012',
             security_code: 123,
             brand: 'Visa'
+          },
+          recurrent_payment: {
+            end_date: '11/12/2012',
+            interval: 'SemiAnnual',
+            authorize_now: true,
           }
         }
       }

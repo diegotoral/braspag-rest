@@ -48,7 +48,12 @@ describe BraspagRest::Payment do
       'Authenticate' => false,
       'Installments' => 1,
       'Recurrent' => false,
-      'Status' => 1
+      'Status' => 1,
+      'RecurrentPayment' => {
+        'AuthorizeNow' => true,
+        'EndDate' => '2019-12-01',
+        'Interval' => 'SemiAnnual',
+      },
     }
   }
 
@@ -100,6 +105,7 @@ describe BraspagRest::Payment do
       expect(payment.authorization_code).to eq('058475')
       expect(payment.reason_code).to eq(0)
       expect(payment.reason_message).to eq('Successful')
+      expect(payment.recurrent_payment).to be_an_instance_of(BraspagRest::RecurrentPayment)
     end
   end
 
